@@ -52,4 +52,4 @@ EXPOSE 8080
 USER daemon
 
 # ENTRYPOINT ["cmd/writefreely/writefreely"]
-ENTRYPOINT ["./docker-entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
