@@ -17,18 +17,6 @@ ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN make build \
   && make ui
 
-RUN echo '#!/bin/bash \
-set -e \
-cd /go \
-WRITEFREELY=cmd/writefreely/writefreely \
-if [ ! -e ./keys/email.aes256 ]; then \
-  "${WRITEFREELY}" db init \
-  "${WRITEFREELY}" generate keys \
-fi \
-"${WRITEFREELY}" db migrate \
-exec "${WRITEFREELY}"' > entrypoint.sh \
-  && chmod +x entrypoint.sh
-
 RUN mkdir /stage && \
     cp -R /go/bin \
       /go/src/github.com/writefreely/writefreely/templates \
@@ -44,6 +32,8 @@ FROM alpine:3
 
 RUN apk add --no-cache openssl ca-certificates
 COPY --from=build --chown=daemon:daemon /stage /go
+COPY --chown=daemon:daemon ./entrypoint.sh /go/entrypoint.sh
+RUN chmod +x /go/entrypoint.sh
 
 WORKDIR /go
 VOLUME /go/keys
@@ -51,4 +41,4 @@ EXPOSE 8080
 USER daemon
 
 # ENTRYPOINT ["cmd/writefreely/writefreely"]
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/go/entrypoint.sh"]
