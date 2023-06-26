@@ -18,7 +18,7 @@ RUN make build \
   && make ui
 
 RUN echo '\
-  #!/bin/sh \
+  #!/bin/bash \
 set -e \
 cd /go \
 WRITEFREELY=cmd/writefreely/writefreely \
