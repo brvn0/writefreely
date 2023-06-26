@@ -40,5 +40,8 @@ VOLUME /go/keys
 EXPOSE 8080
 USER daemon
 
+RUN chmod 777 -R .
+RUN chown daemon:daemon -R .
+
 # ENTRYPOINT ["cmd/writefreely/writefreely"]
 ENTRYPOINT ["/go/entrypoint.sh"]
