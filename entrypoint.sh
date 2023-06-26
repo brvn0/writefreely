@@ -5,8 +5,8 @@ cd /go
 WRITEFREELY=cmd/writefreely/writefreely
 
 if [ ! -e ./keys/email.aes256 ]; then
-    "${WRITEFREELY}" db init && echo "Database initialized!"
-    "${WRITEFREELY}" generate keys && echo "Keys generated!"
+"${WRITEFREELY}" generate keys && echo "Keys generated!"
+"${WRITEFREELY}" db init && echo "Database initialized!"   
 fi
 
 "${WRITEFREELY}" db migrate
