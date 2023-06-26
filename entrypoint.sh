@@ -8,7 +8,7 @@ WRITEFREELY=cmd/writefreely/writefreely
 
 if [ ! -e ./keys/email.aes256 ]; then
     "${WRITEFREELY}" db init
-    "${WRITEFREELY}" generate keys
+    yes | "${WRITEFREELY}" generate keys
 fi
 
 "${WRITEFREELY}" db migrate
