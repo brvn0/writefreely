@@ -17,8 +17,7 @@ ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN make build \
   && make ui
 
-RUN echo '\
-  #!/bin/bash \
+RUN echo '#!/bin/bash \
 set -e \
 cd /go \
 WRITEFREELY=cmd/writefreely/writefreely \
