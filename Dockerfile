@@ -23,7 +23,6 @@ RUN mkdir /stage && \
       /go/src/github.com/writefreely/writefreely/pages \
       /go/src/github.com/writefreely/writefreely/keys \
       /go/src/github.com/writefreely/writefreely/cmd \
-      /go/src/github.com/writefreely/writefreely/entrypoint.sh \
       /stage
 
 # Final image
